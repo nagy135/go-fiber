@@ -10,6 +10,13 @@ import (
 
 func main() {
   app := fiber.New()
+
+  // MIDDLEWARE
+  app.Use(func(c *fiber.Ctx) error {
+      fmt.Println("First handler")
+      return c.Next()
+  })
+
   app.Get("/user/:name", func(c *fiber.Ctx) error {
       // c.Set("Connection", "keep-alive")
       // c.Set("Content-Type", "text/html; charset=utf-8")
